@@ -1,0 +1,55 @@
+# Phase 1 (data pipeline + baselines) — pinned to versions known-good on the
+# dev machine. See README for the Windows Application Control note: newer
+# pandas/matplotlib wheels can fail to load their compiled DLLs on this host,
+# so upgrade these deliberately and re-verify `python -c "import pandas"`.
+#
+# Recreate the environment with:
+#   python -m venv .venv
+#   .venv/Scripts/pip install -r requirements.txt
+#
+# (The .venv itself is machine-specific and gitignored — never copy it
+# between machines; its pyvenv.cfg hardcodes an absolute Python path.)
+
+# numpy is pinned <2 because pytorch-forecasting 1.1.1 requires it; this is
+# the resolved, verified-working set (Phase 1 baselines produce identical
+# numbers under numpy 1.26.4).
+pandas==2.2.3
+numpy==1.26.4
+scipy==1.17.1
+matplotlib==3.9.2
+scikit-learn==1.5.2
+lightgbm==4.5.0
+statsmodels==0.14.4
+pyarrow==17.0.0
+
+# --- Phase 2: TFT + LSTM forecasters ---
+# torch is CPU-only; install it from the PyTorch CPU index BEFORE this file:
+#   .venv/Scripts/pip install torch==2.5.1 --index-url https://download.pytorch.org/whl/cpu
+# (a plain `pip install torch` pulls the much larger CUDA build).
+torch==2.5.1
+lightning==2.4.0
+pytorch-forecasting==1.1.1
+
+# --- Phase 3: simulator, objective, MILP oracle ---
+pulp==3.3.2
+rainflow==3.2.0
+
+# --- Phase 4: GA scheduler ---
+deap==1.4.4
+
+# --- Phase 5: PSO refiner ---
+pyswarms==1.3.0
+
+# --- Phase 6: closed loop (drift detection) ---
+# river 0.21.0 is the last line that supports numpy<2; newer river (0.25+)
+# hard-requires numpy>=2.3.4, which breaks the pytorch-forecasting pin above.
+# Do not bump river without first resolving that numpy conflict.
+river==0.21.0
+
+# --- Phase 6.5: FastAPI backend for the live what-if panel (Phase 8a) ---
+# Only needed for the interactive what-if feature; Phases 1-7 run static-JSON.
+fastapi==0.141.1
+uvicorn==0.52.1
+
+# Phase 7 (src/eval/) reuses deap/pyswarms/pulp already pinned above -- no
+# new dependencies.
