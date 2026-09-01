@@ -1,0 +1,39 @@
+{
+  "margins": {
+    "solar_mw": {
+      "margin_mw": 150.08,
+      "calibration_n": 141408,
+      "raw_picp_pct_on_calibration_set": 72.62
+    },
+    "wind_mw": {
+      "margin_mw": 1841.38,
+      "calibration_n": 141408,
+      "raw_picp_pct_on_calibration_set": 56.86
+    },
+    "load_mw": {
+      "margin_mw": 939.66,
+      "calibration_n": 141408,
+      "raw_picp_pct_on_calibration_set": 58.42
+    }
+  },
+  "test_set_verification": {
+    "solar_mw": {
+      "picp_raw_pct": 73.01,
+      "picp_calibrated_pct": 79.58,
+      "sharpness_raw_mw": 1946.51,
+      "sharpness_calibrated_mw": 2246.67
+    },
+    "wind_mw": {
+      "picp_raw_pct": 44.81,
+      "picp_calibrated_pct": 66.7,
+      "sharpness_raw_mw": 6906.8,
+      "sharpness_calibrated_mw": 10589.56
+    },
+    "load_mw": {
+      "picp_raw_pct": 39.53,
+      "picp_calibrated_pct": 58.13,
+      "sharpness_raw_mw": 3824.09,
+      "sharpness_calibrated_mw": 5703.4
+    }
+  }
+}

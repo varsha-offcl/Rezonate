@@ -11,3 +11,4 @@ results/figures/*.png
 results/models/
 results/logs/
 .DS_Store
+PROBLEMS.md
