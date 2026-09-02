@@ -30,7 +30,7 @@ export default function MetricsTable() {
   return (
     <Card
       title="Forecast accuracy"
-      subtitle="RMSE / MAE / nRMSE on the held-out test set — best model per target highlighted"
+      subtitle="RMSE / MAE / nRMSE / R² on the held-out test set — best model per target highlighted"
     >
       <LoadingError loading={loading} error={error} />
       {data && (
@@ -43,6 +43,7 @@ export default function MetricsTable() {
                 <th className="py-2 pr-4 font-medium text-right">RMSE</th>
                 <th className="py-2 pr-4 font-medium text-right">MAE</th>
                 <th className="py-2 pr-4 font-medium text-right">nRMSE</th>
+                <th className="py-2 pr-4 font-medium text-right">R²</th>
               </tr>
             </thead>
             <tbody>
@@ -71,6 +72,7 @@ export default function MetricsTable() {
                       <td className="py-1.5 pr-4 text-right tabular-nums">{row.rmse}</td>
                       <td className="py-1.5 pr-4 text-right tabular-nums">{row.mae}</td>
                       <td className="py-1.5 pr-4 text-right tabular-nums">{row.nrmse}</td>
+                      <td className="py-1.5 pr-4 text-right tabular-nums">{row.r2 != null ? row.r2 : '—'}</td>
                     </tr>
                   )
                 })

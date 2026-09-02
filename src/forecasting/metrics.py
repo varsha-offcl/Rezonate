@@ -18,6 +18,14 @@ def nrmse(y_true: np.ndarray, y_pred: np.ndarray) -> float:
     return rmse(y_true, y_pred) / float(y_range)
 
 
+def r2(y_true: np.ndarray, y_pred: np.ndarray) -> float:
+    ss_res = float(np.sum((y_true - y_pred) ** 2))
+    ss_tot = float(np.sum((y_true - np.mean(y_true)) ** 2))
+    if ss_tot == 0:
+        return float("nan")
+    return 1.0 - ss_res / ss_tot
+
+
 if __name__ == "__main__":
     y_true = np.array([1.0, 2.0, 3.0, 4.0])
     y_pred = np.array([1.0, 2.0, 3.0, 6.0])

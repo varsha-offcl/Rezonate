@@ -19,7 +19,7 @@ import numpy as np
 import pandas as pd
 
 from src.data.splits import load_splits
-from src.forecasting.metrics import mae, nrmse, rmse
+from src.forecasting.metrics import mae, nrmse, r2, rmse
 
 TARGETS = ["solar_mw", "wind_mw", "load_mw"]
 LAGS = [24, 48, 72, 168]
@@ -74,6 +74,7 @@ def run_for_target(target: str, train: pd.DataFrame, val: pd.DataFrame, test: pd
             "rmse": rmse(y_true, pred),
             "mae": mae(y_true, pred),
             "nrmse": nrmse(y_true, pred),
+            "r2": r2(y_true, pred),
         }
         predictions[name] = pred
 

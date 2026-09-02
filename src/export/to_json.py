@@ -145,7 +145,8 @@ def build_metrics_json(all_results: dict, phase2_metrics: dict | None) -> dict:
         for model_name, m in models.items():
             rows.append({"target": target, "model": model_name,
                          "rmse": r(m["rmse"], 2), "mae": r(m["mae"], 2),
-                         "nrmse": r(m["nrmse"], 4)})
+                         "nrmse": r(m["nrmse"], 4),
+                         "r2": r(m.get("r2", 0), 4)})
     models_present = list(BASELINE_MODELS)
     if phase2_metrics:
         for model_name, per_target in phase2_metrics.items():  # "tft", "lstm"
@@ -153,7 +154,8 @@ def build_metrics_json(all_results: dict, phase2_metrics: dict | None) -> dict:
             for target, m in per_target.items():
                 rows.append({"target": target, "model": model_name,
                              "rmse": r(m["rmse"], 2), "mae": r(m["mae"], 2),
-                             "nrmse": r(m["nrmse"], 4)})
+                             "nrmse": r(m["nrmse"], 4),
+                             "r2": r(m.get("r2", 0), 4)})
     ordered = [m for m in ALL_MODELS if m in models_present]
     return {"rows": rows, "targets": TARGETS, "models": ordered}
 

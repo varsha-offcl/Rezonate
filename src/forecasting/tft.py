@@ -51,7 +51,7 @@ import pandas as pd
 import torch
 
 from src.data.splits import load_splits
-from src.forecasting.metrics import mae, nrmse, rmse
+from src.forecasting.metrics import mae, nrmse, r2, rmse
 
 warnings.filterwarnings("ignore", category=UserWarning)  # lightning/pf are chatty
 
@@ -269,6 +269,7 @@ def evaluate(model, test_ds, kind: str):
             "rmse": rmse(y_true, y_pred),
             "mae": mae(y_true, y_pred),
             "nrmse": nrmse(y_true, y_pred),
+            "r2": r2(y_true, y_pred),
         }
         preds[target] = {"p10": p10, "p50": p50, "p90": p90}
     return metrics, index_df, preds
